@@ -7,14 +7,14 @@ module.exports = {
         fletnix: {
           red: '#E8A020',
           black: '#111010',
-          dark: '#0D0C0B',
+          dark: '#100e0a',
           gray: '#6b6560'
         }
       },
       fontFamily: {
-        sans: ['DM Mono', 'monospace'],
+        sans: ['Inter', 'sans-serif'],
         display: ['"DM Serif Display"', 'serif'],
-        body: ['DM Mono', 'monospace'],
+        body: ['Inter', 'sans-serif'],
       }
     },
   },
