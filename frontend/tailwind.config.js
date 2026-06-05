@@ -1,22 +1,20 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
+  content: ["./src/**/*.{html,ts}"],
   theme: {
     extend: {
       colors: {
-        netflix: {
-          red: '#E50914',
-          black: '#141414',
-          dark: '#0c0c0c',
-          gray: '#8c8c8c'
+        fletnix: {
+          red: '#E8A020',
+          black: '#111010',
+          dark: '#0D0C0B',
+          gray: '#6b6560'
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        display: ['"Space Grotesk"', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        sans: ['DM Mono', 'monospace'],
+        display: ['"DM Serif Display"', 'serif'],
+        body: ['DM Mono', 'monospace'],
       }
     },
   },
