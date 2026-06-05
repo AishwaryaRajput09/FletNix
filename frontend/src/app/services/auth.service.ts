@@ -18,8 +18,16 @@ export interface AuthResponse {
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://flet-nix-backend-dev.vercel.app/api/auth';
+  private getApiUrl(): string {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://localhost:3000/api/auth';
+    }
+    return 'https://flet-nix-backend-dev.vercel.app/api/auth';
+  }
+  private apiUrl = this.getApiUrl();
   private currentUserSubject = new BehaviorSubject<User | null>(null);
+
   public currentUser$ = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {

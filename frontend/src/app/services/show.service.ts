@@ -31,7 +31,15 @@ export interface PaginatedShowsResponse {
   providedIn: 'root'
 })
 export class ShowService {
-  private apiUrl = 'https://flet-nix-backend-dev.vercel.app/api/shows';
+  private getApiUrl(): string {
+    const host = window.location.hostname;
+    if (host === 'localhost' || host === '127.0.0.1') {
+      return 'http://localhost:3000/api/shows';
+    }
+    return 'https://flet-nix-backend-dev.vercel.app/api/shows';
+  }
+  private apiUrl = this.getApiUrl();
+
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
