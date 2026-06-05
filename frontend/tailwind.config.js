@@ -12,6 +12,11 @@ module.exports = {
           dark: '#0c0c0c',
           gray: '#8c8c8c'
         }
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        display: ['"Space Grotesk"', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
       }
     },
   },
