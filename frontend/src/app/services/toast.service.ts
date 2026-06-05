@@ -1,45 +1,39 @@
-import { Injectable, signal } from '@angular/core';
-
-export interface Toast {
-  id: number;
-  message: string;
-  type: 'success' | 'error' | 'info' | 'warning';
-  duration: number;
-}
+import { Injectable, inject } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastService {
-  toasts = signal<Toast[]>([]);
+  private toastr = inject(ToastrService);
 
   show(message: string, type: 'success' | 'error' | 'info' | 'warning' = 'info', duration: number = 4000) {
-    const id = Date.now() + Math.random();
-    const newToast: Toast = { id, message, type, duration };
-    this.toasts.update(current => [...current, newToast]);
-
-    setTimeout(() => {
-      this.remove(id);
-    }, duration);
+    const options = { timeOut: duration };
+    if (type === 'success') {
+      this.toastr.success(message, '', options);
+    } else if (type === 'error') {
+      this.toastr.error(message, '', options);
+    } else if (type === 'warning') {
+      this.toastr.warning(message, '', options);
+    } else {
+      this.toastr.info(message, '', options);
+    }
   }
 
   success(message: string, duration?: number) {
-    this.show(message, 'success', duration);
+    this.toastr.success(message, '', duration ? { timeOut: duration } : undefined);
   }
 
   error(message: string, duration?: number) {
-    this.show(message, 'error', duration);
+    this.toastr.error(message, '', duration ? { timeOut: duration } : undefined);
   }
 
   warning(message: string, duration?: number) {
-    this.show(message, 'warning', duration);
+    this.toastr.warning(message, '', duration ? { timeOut: duration } : undefined);
   }
 
   info(message: string, duration?: number) {
-    this.show(message, 'info', duration);
-  }
-
-  remove(id: number) {
-    this.toasts.update(current => current.filter(t => t.id !== id));
+    this.toastr.info(message, '', duration ? { timeOut: duration } : undefined);
   }
 }
+

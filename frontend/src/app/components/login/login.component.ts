@@ -3,98 +3,20 @@ import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
-import { LucideMail, LucideLock, LucideLogIn } from '@lucide/angular';
+import { LucideMail, LucideLock, LucideLogIn, LucideEye, LucideEyeOff } from '@lucide/angular';
 import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, LucideMail, LucideLock, LucideLogIn],
-  template: `
-    <div class="relative min-h-screen flex items-center justify-center p-4"
-      style="background-image: url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1400'); background-size: cover; background-position: center;">
-
-      <div class="absolute inset-0" style="background: rgba(10,8,6,0.7);"></div>
-
-      <div class="absolute inset-0 opacity-[0.03]"
-        style="background-image: url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);">
-      </div>
-
-      <div class="relative z-10 w-full max-w-lg px-12 py-12"
-        style="background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid rgba(232,160,32,0.2); border-radius: 12px;">
-
-        <div class="mb-8">
-          <h1 class="text-4xl font-normal tracking-widest text-fletnix-red font-display italic">FletNix</h1>
-          <p class="text-white/50 text-sm italic mt-2">Welcome back. Sign in to continue.</p>
-        </div>
-
-        <h2 class="font-display text-3xl font-normal text-white mb-8">Sign In</h2>
-
-        <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="space-y-5">
-
-          <div>
-            <label class="block text-fletnix-gray text-xs tracking-widest uppercase mb-2">Email</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-fletnix-gray">
-                <svg lucideMail class="w-4 h-4"></svg>
-              </span>
-              <input
-                type="email" name="email" [(ngModel)]="email" required email #emailInput="ngModel"
-                placeholder="name@domain.com"
-                class="fletnix-input w-full pl-10 pr-4 py-3 text-white"
-                style="background: rgba(0,0,0,0.4); border-radius: 6px;"
-              />
-            </div>
-            <p *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)"
-              class="text-red-400 text-xs mt-1">Please enter a valid email.</p>
-          </div>
-
-          <div>
-            <label class="block text-fletnix-gray text-xs tracking-widest uppercase mb-2">Password</label>
-            <div class="relative">
-              <span class="absolute inset-y-0 left-3 flex items-center pointer-events-none text-fletnix-gray">
-                <svg lucideLock class="w-4 h-4"></svg>
-              </span>
-              <input
-                type="password" name="password" [(ngModel)]="password" required minlength="6" #passwordInput="ngModel"
-                placeholder="••••••••"
-                class="fletnix-input w-full pl-10 pr-4 py-3 text-white"
-                style="background: rgba(0,0,0,0.4); border-radius: 6px;"
-              />
-            </div>
-            <p *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)"
-              class="text-red-400 text-xs mt-1">Password must be at least 6 characters.</p>
-          </div>
-
-          <button type="submit" [disabled]="loginForm.invalid || isLoading"
-            class="w-full flex items-center justify-center gap-2 py-3 px-4 text-sm tracking-widest uppercase text-fletnix-red transition-all duration-200 mt-6 disabled:opacity-40 disabled:pointer-events-none"
-            style="background: transparent; border: 1px solid rgba(232,160,32,0.5); border-radius: 6px;"
-            onmouseenter="this.style.background='rgba(232,160,32,0.08)'"
-            onmouseleave="this.style.background='transparent'">
-            <svg *ngIf="isLoading" class="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            <svg *ngIf="!isLoading" lucideLogIn class="w-4 h-4"></svg>
-            <span>{{ isLoading ? 'Signing in...' : 'Sign In' }}</span>
-          </button>
-        </form>
-
-        <div class="mt-8 pt-6" style="border-top: 1px solid rgba(255,255,255,0.05);">
-          <p class="text-sm text-white/40">
-            New to FletNix?
-            <a routerLink="/register" class="text-fletnix-red hover:text-white transition-colors duration-200 ml-1 underline">Sign up</a>
-          </p>
-        </div>
-
-      </div>
-    </div>
-  `
+  imports: [CommonModule, FormsModule, RouterLink, LucideMail, LucideLock, LucideLogIn, LucideEye, LucideEyeOff],
+  templateUrl: './login.component.html'
 })
 export class LoginComponent {
   email = '';
   password = '';
   isLoading = false;
+  showPassword = false;
 
   constructor(
     private authService: AuthService,
@@ -120,5 +42,9 @@ export class LoginComponent {
         this.toastService.error(err.error?.error || 'Invalid credentials or connection issue.');
       }
     });
+  }
+
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
   }
 }
