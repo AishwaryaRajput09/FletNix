@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { LucideMail, LucideLock, LucideCalendar, LucideUserPlus, LucideEye, LucideEyeOff } from '@lucide/angular';
 import { ToastService } from '../../services/toast.service';
+import { SpinnerComponent } from '../shared/spinner.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, LucideMail, LucideLock, LucideCalendar, LucideUserPlus, LucideEye, LucideEyeOff],
+  imports: [CommonModule, FormsModule, RouterLink, LucideMail, LucideLock, LucideCalendar, LucideUserPlus, LucideEye, LucideEyeOff, SpinnerComponent],
   templateUrl: './register.component.html'
 })
 export class RegisterComponent {
@@ -49,13 +50,13 @@ export class RegisterComponent {
 
   onDobChange(value: string): void {
     if (value && value > this.maxDate) {
-      this.toastService.error('Date of birth cannot be in the future.');
+      this.toastService.error('Invalid date of birth');
       this.dob = '';
       this.computedAge = null;
       return;
     }
     if (value && value < this.minDate) {
-      this.toastService.error('Age must be less than 120.');
+      this.toastService.error('Age must be under 120');
       this.dob = '';
       this.computedAge = null;
       return;
@@ -66,11 +67,11 @@ export class RegisterComponent {
   onSubmit(): void {
     if (!this.email || !this.password || !this.dob) return;
     if (this.dob > this.maxDate) {
-      this.toastService.error('Date of birth cannot be in the future.');
+      this.toastService.error('Invalid date of birth');
       return;
     }
     if (this.dob < this.minDate) {
-      this.toastService.error('Age must be less than 120.');
+      this.toastService.error('Age must be under 120');
       return;
     }
     this.isLoading = true;
@@ -81,12 +82,12 @@ export class RegisterComponent {
     }).subscribe({
       next: (res) => {
         this.isLoading = false;
-        this.toastService.success(res.message || 'Account created! Redirecting...');
+        this.toastService.success(res.message || 'Account created');
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: (err) => {
         this.isLoading = false;
-        this.toastService.error(err.error?.error || 'Registration failed. Try again.');
+        this.toastService.error(err.error?.error || 'Registration failed');
       }
     });
   }

@@ -17,6 +17,7 @@ import {
   LucideChevronRight,
   LucideLayoutGrid
 } from '@lucide/angular';
+import { SpinnerComponent } from '../shared/spinner.component';
 
 
 
@@ -34,7 +35,8 @@ import {
     LucideUser,
     LucideChevronLeft,
     LucideChevronRight,
-    LucideLayoutGrid
+    LucideLayoutGrid,
+    SpinnerComponent
   ],
   templateUrl: './dashboard.component.html'
 })
@@ -126,8 +128,4 @@ export class DashboardComponent implements OnInit {
     return Math.min(a, b);
   }
 
-  splitCast(castStr: string): string[] {
-    if (!castStr) return [];
-    return castStr.split(',').map(c => c.trim()).filter(Boolean);
-  }
 }

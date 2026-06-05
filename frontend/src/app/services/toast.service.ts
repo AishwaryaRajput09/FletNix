@@ -7,19 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 export class ToastService {
   private toastr = inject(ToastrService);
 
-  show(message: string, type: 'success' | 'error' | 'info' | 'warning' = 'info', duration: number = 4000) {
-    const options = { timeOut: duration };
-    if (type === 'success') {
-      this.toastr.success(message, '', options);
-    } else if (type === 'error') {
-      this.toastr.error(message, '', options);
-    } else if (type === 'warning') {
-      this.toastr.warning(message, '', options);
-    } else {
-      this.toastr.info(message, '', options);
-    }
-  }
-
   success(message: string, duration?: number) {
     this.toastr.success(message, '', duration ? { timeOut: duration } : undefined);
   }
@@ -36,4 +23,3 @@ export class ToastService {
     this.toastr.info(message, '', duration ? { timeOut: duration } : undefined);
   }
 }
-

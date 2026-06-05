@@ -3,7 +3,7 @@
 
       <nav class="sticky top-0 z-40 py-4 px-8 md:px-16 flex justify-between items-center"
         style="background: rgba(12, 10, 7, 0.97); border-bottom: 1px solid rgba(232, 160, 32, 0.1);">
-        <span class="text-xl font-normal tracking-widest text-fletnix-red font-display italic cursor-pointer select-none">FletNix</span>
+        <span class="text-xl font-normal tracking-widest text-fletnix-accent font-display italic cursor-pointer select-none">FletNix</span>
 
         <div class="flex items-center gap-4" *ngIf="user">
           <p class="text-xs text-fletnix-gray hidden sm:block">{{ user.email }}</p>
@@ -38,7 +38,7 @@
           <button
             (click)="onTypeFilter('')"
             [class]="selectedType === ''
-              ? 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase font-bold transition-all duration-200 text-black bg-fletnix-red'
+              ? 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase font-bold transition-all duration-200 text-black bg-fletnix-accent'
               : 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase transition-all duration-200 text-fletnix-gray hover:text-white'"
             style="border: 1px solid rgba(232,160,32,0.15); border-radius: 6px;"
           >
@@ -48,7 +48,7 @@
           <button
             (click)="onTypeFilter('Movie')"
             [class]="selectedType === 'Movie'
-              ? 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase font-bold transition-all duration-200 text-black bg-fletnix-red'
+              ? 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase font-bold transition-all duration-200 text-black bg-fletnix-accent'
               : 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase transition-all duration-200 text-fletnix-gray hover:text-white'"
             style="border: 1px solid rgba(232,160,32,0.15); border-radius: 6px;"
           >
@@ -58,7 +58,7 @@
           <button
             (click)="onTypeFilter('TV Show')"
             [class]="selectedType === 'TV Show'
-              ? 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase font-bold transition-all duration-200 text-black bg-fletnix-red'
+              ? 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase font-bold transition-all duration-200 text-black bg-fletnix-accent'
               : 'flex items-center gap-1.5 px-4 py-2.5 text-xs tracking-widest uppercase transition-all duration-200 text-fletnix-gray hover:text-white'"
             style="border: 1px solid rgba(232,160,32,0.15); border-radius: 6px;"
           >
@@ -71,10 +71,7 @@
       <main class="flex-grow px-8 md:px-16 py-8 max-w-7xl mx-auto w-full mb-12">
 
         <div class="flex flex-col justify-center items-center py-32 gap-4" *ngIf="isLoading">
-          <svg class="animate-spin h-8 w-8 text-fletnix-red" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-          </svg>
+          <app-spinner spinnerClass="h-8 w-8 text-fletnix-accent"></app-spinner>
           <span class="text-xs text-fletnix-gray tracking-widest uppercase">Loading catalog...</span>
         </div>
 
@@ -86,15 +83,12 @@
           <div
             *ngFor="let show of shows"
             (click)="onSelectShow(show)"
-            class="group cursor-pointer transition-all duration-200 py-5 px-6 flex flex-col gap-2"
-            style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-left: 2px solid transparent; border-radius: 6px;"
-            onmouseenter="this.style.borderLeftColor='#E8A020'; this.style.background='rgba(232,160,32,0.04)';"
-            onmouseleave="this.style.borderLeftColor='transparent'; this.style.background='rgba(255,255,255,0.02)';"
+            class="show-card group cursor-pointer transition-all duration-200 py-5 px-6 flex flex-col gap-2"
           >
             <div class="flex justify-between items-start">
-              <span class="text-[10px] font-bold tracking-widest uppercase text-fletnix-red">{{ show.type }}</span>
+              <span class="text-[10px] font-bold tracking-widest uppercase text-fletnix-accent">{{ show.type }}</span>
               <span *ngIf="show.rating"
-                class="text-[10px] font-bold px-1.5 py-0.5 text-fletnix-red shrink-0"
+                class="text-[10px] font-bold px-1.5 py-0.5 text-fletnix-accent shrink-0"
                 style="border: 1px solid rgba(232,160,32,0.3); background: rgba(232,160,32,0.08);">
                 {{ show.rating }}
               </span>

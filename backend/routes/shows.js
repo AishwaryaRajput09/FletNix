@@ -47,7 +47,7 @@ router.get('/', authenticateToken, async (req, res) => {
     });
   } catch (error) {
     console.error('Error fetching shows:', error);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: 'something went wrong' });
   }
 });
 
@@ -56,18 +56,18 @@ router.get('/:id', authenticateToken, async (req, res) => {
     const show = await Show.findById(req.params.id);
     
     if (!show) {
-      return res.status(404).json({ error: 'Show not found.' });
+      return res.status(404).json({ error: 'not found' });
     }
 
     const userAge = req.user.age;
     if (userAge < 18 && show.rating === 'R') {
-      return res.status(403).json({ error: 'Access Denied. You must be 18 or older to view this R-rated content.' });
+      return res.status(403).json({ error: 'age-restricted content' });
     }
 
     res.json(show);
   } catch (error) {
     console.error('Error fetching show detail:', error);
-    res.status(500).json({ error: 'Internal server error.' });
+    res.status(500).json({ error: 'something went wrong' });
   }
 });
 

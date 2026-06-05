@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+dotenv.config();
+
 const { connectDB, disconnectDB } = require('./db');
 const authRoutes = require('./routes/auth');
 const showRoutes = require('./routes/shows');
-
-dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,12 +23,8 @@ app.use(express.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/shows', showRoutes);
 
-app.get('/', (req, res) => {
-  res.json({ message: 'FletNix API Server is running.' });
-});
-
 app.get('/health', (req, res) => {
-  res.json({ status: 'UP', message: 'FletNix Backend Server is running.' });
+  res.json({ status: 'ok' });
 });
 
 async function startServer() {

@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { LucideMail, LucideLock, LucideLogIn, LucideEye, LucideEyeOff } from '@lucide/angular';
 import { ToastService } from '../../services/toast.service';
+import { SpinnerComponent } from '../shared/spinner.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, LucideMail, LucideLock, LucideLogIn, LucideEye, LucideEyeOff],
+  imports: [CommonModule, FormsModule, RouterLink, LucideMail, LucideLock, LucideLogIn, LucideEye, LucideEyeOff, SpinnerComponent],
   templateUrl: './login.component.html'
 })
 export class LoginComponent {
@@ -34,12 +35,12 @@ export class LoginComponent {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
       next: () => {
         this.isLoading = false;
-        this.toastService.success('Logged in successfully!');
+        this.toastService.success('Logged in');
         this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         this.isLoading = false;
-        this.toastService.error(err.error?.error || 'Invalid credentials or connection issue.');
+        this.toastService.error(err.error?.error || 'Login failed');
       }
     });
   }

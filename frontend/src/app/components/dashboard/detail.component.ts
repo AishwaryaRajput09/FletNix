@@ -11,6 +11,8 @@ import {
   LucideMapPin,
   LucideTag
 } from '@lucide/angular';
+import { SpinnerComponent } from '../shared/spinner.component';
+import { SplitCastPipe } from '../../pipes/split-cast.pipe';
 
 @Component({
   selector: 'app-detail',
@@ -22,7 +24,9 @@ import {
     LucideUser,
     LucideFileText,
     LucideMapPin,
-    LucideTag
+    LucideTag,
+    SpinnerComponent,
+    SplitCastPipe
   ],
   templateUrl: './detail.component.html'
 })
@@ -63,8 +67,4 @@ export class DetailComponent implements OnInit {
     this.router.navigate(['/dashboard']);
   }
 
-  splitCast(castStr: string): string[] {
-    if (!castStr) return [];
-    return castStr.split(',').map(c => c.trim()).filter(Boolean);
-  }
 }

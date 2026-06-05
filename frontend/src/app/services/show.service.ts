@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
 import { environment } from '../../environments/environment';
 
 export interface Show {
@@ -34,16 +33,7 @@ export interface PaginatedShowsResponse {
 export class ShowService {
   private apiUrl = `${environment.apiUrl}/shows`;
 
-
-  constructor(private http: HttpClient, private authService: AuthService) {}
-
-  private getHeaders(): HttpHeaders {
-    const token = this.authService.token;
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    });
-  }
+  constructor(private http: HttpClient) {}
 
   getShows(page: number = 1, search: string = '', type: string = ''): Observable<PaginatedShowsResponse> {
     let params = new HttpParams()
@@ -57,15 +47,10 @@ export class ShowService {
       params = params.set('type', type);
     }
 
-    return this.http.get<PaginatedShowsResponse>(this.apiUrl, {
-      headers: this.getHeaders(),
-      params
-    });
+    return this.http.get<PaginatedShowsResponse>(this.apiUrl, { params });
   }
 
   getShowById(id: string): Observable<Show> {
-    return this.http.get<Show>(`${this.apiUrl}/${id}`, {
-      headers: this.getHeaders()
-    });
+    return this.http.get<Show>(`${this.apiUrl}/${id}`);
   }
 }

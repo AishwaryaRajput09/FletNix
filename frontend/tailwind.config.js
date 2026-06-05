@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         fletnix: {
-          red: '#E8A020',
+          accent: '#E8A020',
           black: '#111010',
           dark: '#100e0a',
           gray: '#6b6560'
