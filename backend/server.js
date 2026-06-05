@@ -11,8 +11,13 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors({
-  origin: 'https://flet-nix-frontend-dev.vercel.app'
+  origin: [
+    'https://flet-nix-frontend-dev.vercel.app',
+    'http://localhost:4200',
+    'http://127.0.0.1:4200'
+  ]
 }));
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
