@@ -15,13 +15,9 @@ import {
   LucideUser,
   LucideChevronLeft,
   LucideChevronRight,
-  LucideStar,
-  LucideFileText,
-  LucideX,
-  LucideMapPin,
-  LucideTag,
   LucideLayoutGrid
 } from '@lucide/angular';
+
 
 
 @Component({
@@ -38,15 +34,10 @@ import {
     LucideUser,
     LucideChevronLeft,
     LucideChevronRight,
-    LucideStar,
-    LucideFileText,
-    LucideX,
-    LucideMapPin,
-    LucideTag,
     LucideLayoutGrid
   ],
   template: `
-    <div class="min-h-screen text-white flex flex-col font-sans" *ngIf="!selectedShow"
+    <div class="min-h-screen text-white flex flex-col font-sans"
       style="background-color: #100e0a;">
 
       <nav class="sticky top-0 z-40 py-4 px-8 md:px-16 flex justify-between items-center"
@@ -213,8 +204,6 @@ export class DashboardComponent implements OnInit {
   totalPages = 1;
   totalCount = 0;
 
-  selectedShow: Show | null = null;
-
   constructor(
     private authService: AuthService,
     private showService: ShowService,
@@ -279,10 +268,6 @@ export class DashboardComponent implements OnInit {
 
  onSelectShow(show: Show): void {
     this.router.navigate(['/dashboard', show._id]);
-  }
-
-  onCloseModal(): void {
-    this.selectedShow = null;
   }
 
   onLogout(): void {
