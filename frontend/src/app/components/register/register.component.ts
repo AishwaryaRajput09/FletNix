@@ -19,6 +19,12 @@ export class RegisterComponent {
   computedAge: number | null = null;
   isLoading = false;
   showPassword = false;
+  maxDate = new Date().toISOString().split('T')[0];
+  minDate = (() => {
+    const d = new Date();
+    d.setFullYear(d.getFullYear() - 120);
+    return d.toISOString().split('T')[0];
+  })();
 
 
   constructor(
@@ -42,11 +48,31 @@ export class RegisterComponent {
   }
 
   onDobChange(value: string): void {
+    if (value && value > this.maxDate) {
+      this.toastService.error('Date of birth cannot be in the future.');
+      this.dob = '';
+      this.computedAge = null;
+      return;
+    }
+    if (value && value < this.minDate) {
+      this.toastService.error('Age must be less than 120.');
+      this.dob = '';
+      this.computedAge = null;
+      return;
+    }
     this.computedAge = value ? this.calculateAge(value) : null;
   }
 
   onSubmit(): void {
     if (!this.email || !this.password || !this.dob) return;
+    if (this.dob > this.maxDate) {
+      this.toastService.error('Date of birth cannot be in the future.');
+      return;
+    }
+    if (this.dob < this.minDate) {
+      this.toastService.error('Age must be less than 120.');
+      return;
+    }
     this.isLoading = true;
     this.authService.register({
       email: this.email,

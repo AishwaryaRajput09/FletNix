@@ -69,6 +69,8 @@
               </span>
               <input
                 type="date" name="dob" [(ngModel)]="dob" (ngModelChange)="onDobChange($event)" required #dobInput="ngModel"
+                [max]="maxDate"
+                [min]="minDate"
                 class="fletnix-input w-full pl-10 pr-4 py-3 text-white"
                 style="background: rgba(0,0,0,0.4); border-radius: 6px; color-scheme: dark;"
               />

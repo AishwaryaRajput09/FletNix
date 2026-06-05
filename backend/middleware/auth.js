@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'fletnix_secret_key_12345';
+if (!process.env.JWT_SECRET) {
+  throw new Error('FATAL: JWT_SECRET environment variable is missing.');
+}
+const JWT_SECRET = process.env.JWT_SECRET;
 
 function authenticateToken(req, reqRes, next) {
   const authHeader = req.headers['authorization'];

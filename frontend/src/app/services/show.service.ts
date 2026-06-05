@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { environment } from '../../environments/environment';
 
 export interface Show {
   _id: string;
@@ -31,14 +32,7 @@ export interface PaginatedShowsResponse {
   providedIn: 'root'
 })
 export class ShowService {
-  private getApiUrl(): string {
-    const host = window.location.hostname;
-    if (host === 'localhost' || host === '127.0.0.1') {
-      return 'http://localhost:3000/api/shows';
-    }
-    return 'https://flet-nix-backend-dev.vercel.app/api/shows';
-  }
-  private apiUrl = this.getApiUrl();
+  private apiUrl = `${environment.apiUrl}/shows`;
 
 
   constructor(private http: HttpClient, private authService: AuthService) {}

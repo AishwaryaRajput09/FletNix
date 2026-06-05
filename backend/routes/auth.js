@@ -17,6 +17,10 @@ router.post('/register', async (req, res) => {
       return res.status(400).json({ error: 'Age must be a valid positive number.' });
     }
 
+    if (ageNum > 120){
+      return res.status(400).json({ error: 'Age must be less than 120.' });
+    }
+  
     if (password.length < 6) {
       return res.status(400).json({ error: 'Password must be at least 6 characters long.' });
     }
