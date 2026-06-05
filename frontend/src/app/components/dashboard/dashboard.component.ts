@@ -6,11 +6,43 @@ import { AuthService, User } from '../../services/auth.service';
 import { Show, ShowService } from '../../services/show.service';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { 
+  LucideLogOut, 
+  LucideSearch, 
+  LucideFilm, 
+  LucideTv, 
+  LucideCalendar, 
+  LucideUser, 
+  LucideChevronLeft, 
+  LucideChevronRight, 
+  LucideStar, 
+  LucideFileText, 
+  LucideX, 
+  LucideMapPin,
+  LucideTag
+} from '@lucide/angular';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    LucideLogOut, 
+    LucideSearch, 
+    LucideFilm, 
+    LucideTv, 
+    LucideCalendar, 
+    LucideUser, 
+    LucideChevronLeft, 
+    LucideChevronRight, 
+    LucideStar, 
+    LucideFileText, 
+    LucideX, 
+    LucideMapPin,
+    LucideTag
+  ],
   template: `
     <div class="min-h-screen bg-netflix-dark text-white flex flex-col font-sans">
       
@@ -21,7 +53,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
         
         <div class="flex items-center gap-4" *ngIf="user">
           <div class="text-right hidden sm:block">
-            <p class="text-xs text-netflix-gray">Signed in as</p>
+            <p class="text-xs text-netflix-gray flex items-center gap-1 justify-end">
+              <svg lucideUser class="w-3.5 h-3.5"></svg>
+              Signed in as
+            </p>
             <p class="text-sm font-semibold text-white">{{ user.email }}</p>
           </div>
 
@@ -29,9 +64,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             (click)="onLogout()" 
             class="bg-transparent hover:bg-netflix-red/10 text-white border border-white/20 hover:border-netflix-red px-4 py-2 rounded-xl text-sm font-medium transition active:scale-95 flex items-center gap-2"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-            </svg>
+            <svg lucideLogOut class="w-4 h-4"></svg>
             Logout
           </button>
         </div>
@@ -42,9 +75,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
           
           <div class="relative w-full md:max-w-md">
             <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-netflix-gray">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <svg lucideSearch class="w-5 h-5"></svg>
             </span>
             <input 
               type="text" 
@@ -131,7 +162,10 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               </h3>
 
               <div class="flex items-center gap-2 text-xs text-netflix-gray mb-3 font-medium">
-                <span>{{ show.release_year }}</span>
+                <span class="flex items-center gap-1">
+                  <svg lucideCalendar class="w-3.5 h-3.5"></svg>
+                  {{ show.release_year }}
+                </span>
                 <span>•</span>
                 <span>{{ show.duration }}</span>
               </div>
@@ -163,9 +197,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               [disabled]="currentPage === 1"
               class="glass-panel hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none px-4 py-2 rounded-xl text-sm font-medium transition active:scale-95 flex items-center gap-1"
             >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-              </svg>
+              <svg lucideChevronLeft class="w-4 h-4"></svg>
               Prev
             </button>
 
@@ -179,9 +211,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
               class="glass-panel hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none px-4 py-2 rounded-xl text-sm font-medium transition active:scale-95 flex items-center gap-1"
             >
               Next
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
+              <svg lucideChevronRight class="w-4 h-4"></svg>
             </button>
           </div>
         </div>
@@ -210,36 +240,50 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
             (click)="onCloseModal()" 
             class="absolute top-4 right-4 bg-black/60 hover:bg-netflix-red/20 text-white rounded-full p-2 border border-white/10 hover:border-netflix-red transition"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <svg lucideX class="w-5 h-5"></svg>
           </button>
 
           <div class="p-8 space-y-6 max-h-[70vh] overflow-y-auto">
             
             <div class="flex flex-wrap items-center gap-4 text-sm text-netflix-gray">
-              <span class="text-white font-semibold">{{ selectedShow.release_year }}</span>
+              <span class="text-white font-semibold flex items-center gap-1">
+                <svg lucideCalendar class="w-4 h-4"></svg>
+                {{ selectedShow.release_year }}
+              </span>
               <span>•</span>
               <span class="text-white font-semibold">{{ selectedShow.duration }}</span>
-              <span *ngIf="selectedShow.rating" class="border border-white/20 px-2 py-0.5 rounded text-white text-xs font-bold bg-white/5">
+              <span *ngIf="selectedShow.rating" class="border border-white/20 px-2 py-0.5 rounded text-white text-xs font-bold bg-white/5 flex items-center gap-1">
+                <svg lucideStar class="w-3.5 h-3.5 text-yellow-500 fill-yellow-500"></svg>
                 {{ selectedShow.rating }}
               </span>
-              <span *ngIf="selectedShow.country" class="truncate max-w-[200px]">📍 {{ selectedShow.country }}</span>
+              <span *ngIf="selectedShow.country" class="truncate max-w-[200px] flex items-center gap-1">
+                <svg lucideMapPin class="w-4 h-4"></svg>
+                {{ selectedShow.country }}
+              </span>
             </div>
 
             <div>
-              <h4 class="text-xs uppercase font-bold text-netflix-red tracking-wider mb-2">Description</h4>
+              <h4 class="text-xs uppercase font-bold text-netflix-red tracking-wider mb-2 flex items-center gap-1.5">
+                <svg lucideFileText class="w-4 h-4"></svg>
+                Description
+              </h4>
               <p class="text-gray-300 text-sm leading-relaxed font-light">{{ selectedShow.description }}</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 border-t border-white/5">
               <div *ngIf="selectedShow.director">
-                <h4 class="text-xs uppercase font-bold text-netflix-red tracking-wider mb-1">Director</h4>
+                <h4 class="text-xs uppercase font-bold text-netflix-red tracking-wider mb-1 flex items-center gap-1">
+                  <svg lucideUser class="w-3.5 h-3.5"></svg>
+                  Director
+                </h4>
                 <p class="text-white text-sm font-medium">{{ selectedShow.director }}</p>
               </div>
 
               <div>
-                <h4 class="text-xs uppercase font-bold text-netflix-red tracking-wider mb-1">Genre</h4>
+                <h4 class="text-xs uppercase font-bold text-netflix-red tracking-wider mb-1 flex items-center gap-1">
+                  <svg lucideTag class="w-3.5 h-3.5"></svg>
+                  Genre
+                </h4>
                 <p class="text-white text-sm font-medium">{{ selectedShow.listed_in }}</p>
               </div>
             </div>
