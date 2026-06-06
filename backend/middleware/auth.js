@@ -10,7 +10,7 @@ function authenticateToken(req, res, next) {
   const token = authHeader && authHeader.split(' ')[1];
 
   if (!token) {
-    return res.status(401).json({ error: 'no token provided' });
+    return res.status(401).json({ error: 'access denied. no token provided' });
   }
 
   try {

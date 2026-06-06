@@ -39,7 +39,7 @@ export class DetailComponent implements OnInit {
     private router: Router,
     private showService: ShowService,
     private authService: AuthService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -47,12 +47,12 @@ export class DetailComponent implements OnInit {
 
     this.isLoading = true;
     this.showService.getShowById(id).subscribe({
-      next: (show) => { 
-        this.show = show; 
-        this.isLoading = false; 
+      next: (show) => {
+        this.show = show;
+        this.isLoading = false;
       },
-      error: (err) => { 
-        this.isLoading = false; 
+      error: (err) => {
+        this.isLoading = false;
         if (err.status === 401 || err.status === 403) {
           this.authService.logout();
           this.router.navigate(['/login']);

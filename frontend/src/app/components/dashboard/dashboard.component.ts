@@ -115,7 +115,7 @@ export class DashboardComponent implements OnInit {
     }
   }
 
- onSelectShow(show: Show): void {
+  onSelectShow(show: Show): void {
     this.router.navigate(['/dashboard', show._id]);
   }
 
