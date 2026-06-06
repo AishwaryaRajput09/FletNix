@@ -11,7 +11,8 @@ import { SpinnerComponent } from '../shared/spinner.component';
   selector: 'app-register',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink, LucideMail, LucideLock, LucideCalendar, LucideUserPlus, LucideEye, LucideEyeOff, SpinnerComponent],
-  templateUrl: './register.component.html'
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css'
 })
 export class RegisterComponent {
   email = '';

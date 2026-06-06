@@ -38,7 +38,8 @@ import { SpinnerComponent } from '../shared/spinner.component';
     LucideLayoutGrid,
     SpinnerComponent
   ],
-  templateUrl: './dashboard.component.html'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
   user: User | null = null;

@@ -1,0 +1,32 @@
+.auth-page {
+  background-image: url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1400');
+  background-size: cover;
+  background-position: center;
+}
+
+.auth-overlay {
+  background: rgba(10, 8, 6, 0.7);
+}
+
+.auth-card {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(232, 160, 32, 0.2);
+  border-radius: 12px;
+}
+
+.auth-input {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+}
+
+.auth-input-date {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  color-scheme: dark;
+}
+
+.auth-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}

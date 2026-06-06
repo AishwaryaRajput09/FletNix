@@ -28,7 +28,8 @@ import { SplitCastPipe } from '../../pipes/split-cast.pipe';
     SpinnerComponent,
     SplitCastPipe
   ],
-  templateUrl: './detail.component.html'
+  templateUrl: './detail.component.html',
+  styleUrl: './detail.component.css'
 })
 export class DetailComponent implements OnInit {
   show: Show | null = null;

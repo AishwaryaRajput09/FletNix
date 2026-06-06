@@ -1,0 +1,39 @@
+:host {
+  display: block;
+  background-color: #100e0a;
+}
+
+.detail-nav {
+  background: rgba(12, 10, 7, 0.97);
+  border-bottom: 1px solid rgba(232, 160, 32, 0.1);
+}
+
+.back-btn {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.accent-divider {
+  height: 1px;
+  background: linear-gradient(to right, rgba(232, 160, 32, 0.5), transparent);
+}
+
+.subtle-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.rating-badge {
+  border: 1px solid rgba(232, 160, 32, 0.3);
+  background: rgba(232, 160, 32, 0.08);
+  border-radius: 4px;
+}
+
+.cast-item {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.date-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+}

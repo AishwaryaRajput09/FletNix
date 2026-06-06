@@ -11,7 +11,8 @@ import { SpinnerComponent } from '../shared/spinner.component';
   selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterLink, LucideMail, LucideLock, LucideLogIn, LucideEye, LucideEyeOff, SpinnerComponent],
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrl: './login.component.css'
 })
 export class LoginComponent {
   email = '';

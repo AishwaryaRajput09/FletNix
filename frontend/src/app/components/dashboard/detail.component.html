@@ -1,96 +1,90 @@
-<div class="min-h-screen text-white font-sans" style="background-color: #100e0a;">
-    <nav class="sticky top-0 z-40 py-4 px-8 md:px-16 flex justify-between items-center"
-        style="background: rgba(12,10,7,0.97); border-bottom: 1px solid rgba(232,160,32,0.1);">
-        <span
-            class="text-xl font-normal tracking-widest text-fletnix-accent font-display italic select-none">FletNix</span>
-        <button (click)="goBack()"
-            class="flex items-center gap-2 text-xs text-fletnix-gray hover:text-white transition-all duration-200"
-            style="border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 6px 12px;">
-            <svg lucideChevronLeft class="w-3.5 h-3.5"></svg>
-            Back to results
-        </button>
-    </nav>
-    <div *ngIf="isLoading" class="flex flex-col justify-center items-center py-32 gap-4">
-        <app-spinner spinnerClass="h-8 w-8 text-fletnix-accent"></app-spinner>
-        <span class="text-xs text-fletnix-gray tracking-widest uppercase">Loading...</span>
+<div class="min-h-screen text-white font-sans">
+  <nav class="detail-nav sticky top-0 z-40 py-4 px-8 md:px-16 flex justify-between items-center">
+    <span class="text-xl font-normal tracking-widest text-fletnix-accent font-display italic select-none">FletNix</span>
+    <button (click)="goBack()"
+      class="back-btn flex items-center gap-2 text-xs text-fletnix-gray hover:text-white transition-all duration-200">
+      <svg lucideChevronLeft class="w-3.5 h-3.5"></svg>
+      Back to results
+    </button>
+  </nav>
+
+  <div *ngIf="isLoading" class="flex flex-col justify-center items-center py-32 gap-4">
+    <app-spinner spinnerClass="h-8 w-8 text-fletnix-accent"></app-spinner>
+    <span class="text-xs text-fletnix-gray tracking-widest uppercase">Loading...</span>
+  </div>
+
+  <div *ngIf="!isLoading && !show" class="flex flex-col justify-center items-center py-32 gap-4">
+    <p class="text-fletnix-gray text-sm">Show not found.</p>
+    <button (click)="goBack()" class="text-xs text-fletnix-accent underline">Go back</button>
+  </div>
+
+  <div *ngIf="!isLoading && show" class="px-8 md:px-16 py-12 max-w-3xl mx-auto">
+
+    <div class="flex items-center gap-2">
+      <span class="text-[10px] font-bold tracking-widest uppercase text-fletnix-accent">{{ show.type }}</span>
+      <span class="text-fletnix-gray/40 text-xs select-none">•</span>
+      <span class="text-[10px] font-bold tracking-widest text-fletnix-gray font-mono uppercase">ID: {{ show.show_id }}</span>
     </div>
-    <div *ngIf="!isLoading && !show" class="flex flex-col justify-center items-center py-32 gap-4">
-        <p class="text-fletnix-gray text-sm">Show not found.</p>
-        <button (click)="goBack()" class="text-xs text-fletnix-accent underline">Go back</button>
+    <h1 class="text-5xl md:text-6xl font-normal text-white mt-3 mb-8 font-display leading-tight">
+      {{ show.title }}
+    </h1>
+
+    <div class="accent-divider mb-8"></div>
+
+    <div class="flex flex-wrap items-center gap-4 text-sm mb-10">
+      <span class="flex items-center gap-1.5 text-white">
+        <svg lucideCalendar class="w-3.5 h-3.5 text-fletnix-accent"></svg>
+        {{ show.release_year }}
+      </span>
+      <span class="text-fletnix-gray opacity-40">•</span>
+      <span class="text-white">{{ show.duration }}</span>
+      <span *ngIf="show.rating" class="rating-badge text-xs font-bold px-2 py-0.5 text-fletnix-accent">
+        {{ show.rating }}
+      </span>
+      <span *ngIf="show.country" class="flex items-center gap-1 text-fletnix-gray text-xs">
+        <svg lucideMapPin class="w-3.5 h-3.5"></svg>
+        {{ show.country }}
+      </span>
     </div>
 
-    <div *ngIf="!isLoading && show" class="px-8 md:px-16 py-12 max-w-3xl mx-auto">
-
-        <div class="flex items-center gap-2">
-            <span class="text-[10px] font-bold tracking-widest uppercase text-fletnix-accent">{{ show.type }}</span>
-            <span class="text-fletnix-gray/40 text-xs select-none">•</span>
-            <span class="text-[10px] font-bold tracking-widest text-fletnix-gray font-mono uppercase">ID: {{
-                show.show_id }}</span>
-        </div>
-        <h1 class="text-5xl md:text-6xl font-normal text-white mt-3 mb-8 font-display leading-tight">
-            {{ show.title }}
-        </h1>
-
-        <div class="mb-8"
-            style="height: 1px; background: linear-gradient(to right, rgba(232,160,32,0.5), transparent);"></div>
-
-        <div class="flex flex-wrap items-center gap-4 text-sm mb-10">
-            <span class="flex items-center gap-1.5 text-white">
-                <svg lucideCalendar class="w-3.5 h-3.5 text-fletnix-accent"></svg>
-                {{ show.release_year }}
-            </span>
-            <span class="text-fletnix-gray opacity-40">•</span>
-            <span class="text-white">{{ show.duration }}</span>
-            <span *ngIf="show.rating" class="text-xs font-bold px-2 py-0.5 text-fletnix-accent"
-                style="border: 1px solid rgba(232,160,32,0.3); background: rgba(232,160,32,0.08); border-radius: 4px;">
-                {{ show.rating }}
-            </span>
-            <span *ngIf="show.country" class="flex items-center gap-1 text-fletnix-gray text-xs">
-                <svg lucideMapPin class="w-3.5 h-3.5"></svg>
-                {{ show.country }}
-            </span>
-        </div>
-
-        <div class="mb-10">
-            <p class="text-xs tracking-widest uppercase text-fletnix-accent mb-3 flex items-center gap-1.5">
-                <svg lucideFileText class="w-3.5 h-3.5"></svg> Description
-            </p>
-            <p class="text-white/70 text-base leading-relaxed font-light">{{ show.description }}</p>
-        </div>
-
-        <div class="mb-10" style="height: 1px; background: rgba(255,255,255,0.05);"></div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
-            <div *ngIf="show.director">
-                <p class="text-xs tracking-widest uppercase text-fletnix-accent mb-2 flex items-center gap-1.5">
-                    <svg lucideUser class="w-3.5 h-3.5"></svg> Director
-                </p>
-                <p class="text-white text-sm">{{ show.director }}</p>
-            </div>
-            <div>
-                <p class="text-xs tracking-widest uppercase text-fletnix-accent mb-2 flex items-center gap-1.5">
-                    <svg lucideTag class="w-3.5 h-3.5"></svg> Genre
-                </p>
-                <p class="text-white text-sm">{{ show.listed_in }}</p>
-            </div>
-        </div>
-
-        <div *ngIf="show.cast" class="mb-10">
-            <p class="text-xs tracking-widest uppercase text-fletnix-accent mb-4 flex items-center gap-1.5">
-                <svg lucideUser class="w-3.5 h-3.5"></svg> Cast
-            </p>
-            <div class="flex flex-wrap gap-x-6 gap-y-2">
-                <span *ngFor="let actor of show.cast | splitCast" class="text-sm text-white/50 pb-1"
-                    style="border-bottom: 1px solid rgba(255,255,255,0.08);">
-                    {{ actor }}
-                </span>
-            </div>
-        </div>
-
-        <div *ngIf="show.date_added" class="pt-6 text-xs text-fletnix-gray tracking-wider"
-            style="border-top: 1px solid rgba(255,255,255,0.04);">
-            Added {{ show.date_added }}
-        </div>
-
+    <div class="mb-10">
+      <p class="text-xs tracking-widest uppercase text-fletnix-accent mb-3 flex items-center gap-1.5">
+        <svg lucideFileText class="w-3.5 h-3.5"></svg> Description
+      </p>
+      <p class="text-white/70 text-base leading-relaxed font-light">{{ show.description }}</p>
     </div>
+
+    <div class="subtle-divider mb-10"></div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
+      <div *ngIf="show.director">
+        <p class="text-xs tracking-widest uppercase text-fletnix-accent mb-2 flex items-center gap-1.5">
+          <svg lucideUser class="w-3.5 h-3.5"></svg> Director
+        </p>
+        <p class="text-white text-sm">{{ show.director }}</p>
+      </div>
+      <div>
+        <p class="text-xs tracking-widest uppercase text-fletnix-accent mb-2 flex items-center gap-1.5">
+          <svg lucideTag class="w-3.5 h-3.5"></svg> Genre
+        </p>
+        <p class="text-white text-sm">{{ show.listed_in }}</p>
+      </div>
+    </div>
+
+    <div *ngIf="show.cast" class="mb-10">
+      <p class="text-xs tracking-widest uppercase text-fletnix-accent mb-4 flex items-center gap-1.5">
+        <svg lucideUser class="w-3.5 h-3.5"></svg> Cast
+      </p>
+      <div class="flex flex-wrap gap-x-6 gap-y-2">
+        <span *ngFor="let actor of show.cast | splitCast" class="cast-item text-sm text-white/50 pb-1">
+          {{ actor }}
+        </span>
+      </div>
+    </div>
+
+    <div *ngIf="show.date_added" class="date-footer pt-6 text-xs text-fletnix-gray tracking-wider">
+      Added {{ show.date_added }}
+    </div>
+
+  </div>
 </div>

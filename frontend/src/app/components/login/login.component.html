@@ -1,10 +1,8 @@
-<div class="relative min-h-screen flex items-center justify-center p-4"
-  style="background-image: url('https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=1400'); background-size: cover; background-position: center;">
+<div class="auth-page relative min-h-screen flex items-center justify-center p-4">
 
-  <div class="absolute inset-0" style="background: rgba(10,8,6,0.7);"></div>
+  <div class="auth-overlay absolute inset-0"></div>
 
-  <div class="relative z-10 w-full max-w-lg px-12 py-12"
-    style="background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid rgba(232,160,32,0.2); border-radius: 12px;">
+  <div class="auth-card relative z-10 w-full max-w-lg px-12 py-12">
 
     <div class="mb-8">
       <h1 class="text-4xl font-normal tracking-widest text-fletnix-accent font-display italic">FletNix</h1>
@@ -22,8 +20,7 @@
             <svg lucideMail class="w-4 h-4"></svg>
           </span>
           <input type="email" name="email" [(ngModel)]="email" required email #emailInput="ngModel"
-            placeholder="name@domain.com" class="fletnix-input w-full pl-10 pr-4 py-3 text-white"
-            style="background: rgba(0,0,0,0.4); border-radius: 6px;" />
+            placeholder="name@domain.com" class="auth-input fletnix-input w-full pl-10 pr-4 py-3 text-white" />
         </div>
         <p *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="text-red-400 text-xs mt-1">
           Please enter a valid email.</p>
@@ -37,8 +34,7 @@
           </span>
           <input [type]="showPassword ? 'text' : 'password'" name="password" [(ngModel)]="password" required
             minlength="6" #passwordInput="ngModel" placeholder="••••••••"
-            class="fletnix-input w-full pl-10 pr-10 py-3 text-white"
-            style="background: rgba(0,0,0,0.4); border-radius: 6px;" />
+            class="auth-input fletnix-input w-full pl-10 pr-10 py-3 text-white" />
           <button type="button" (click)="togglePasswordVisibility()"
             class="absolute inset-y-0 right-3 flex items-center text-fletnix-gray hover:text-white transition-colors duration-200">
             <svg *ngIf="showPassword" lucideEye class="w-4 h-4"></svg>
@@ -57,7 +53,7 @@
       </button>
     </form>
 
-    <div class="mt-8 pt-6" style="border-top: 1px solid rgba(255,255,255,0.05);">
+    <div class="auth-divider mt-8 pt-6">
       <p class="text-sm text-white/40">
         New to FletNix?
         <a routerLink="/register"
