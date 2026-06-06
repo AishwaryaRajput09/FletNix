@@ -48,3 +48,6 @@ Runs on `http://localhost:4200`
 - Type filter (All / Movies / TV Shows)
 - Pagination
 - Responsive layout
+
+## deployed link
+- https://flet-nix-frontend-dev.vercel.app/
